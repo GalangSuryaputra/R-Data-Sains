@@ -1,0 +1,26 @@
+library(rgdal)
+jawa<-readOGR(dsn = 'D:/MATHEMATICS/BANK OF DATA/PETA/Map of Jawa (original)',layer='jawa')
+head(jawa@data)
+plot(jawa)
+plot(jawa,col=jawa$KODE_PROP-30)
+
+library(rworldmap)
+data(package="rworldmap")
+data(countriesCoarse,envir = environment(),package = "rworldmap")
+plot(countriesCoarse)
+str(countriesCoarse)
+
+datapop<-read.csv('http://bit.ly/Popgrowth2000',header = T,sep = ',')
+View(datapop)
+coordinates(datapop)<-c("Longitude","Latitude")
+
+plot(datapop)
+size<-datapop$PopGrowth_2000/sum(datapop$PopGrowth_2000)
+plot(datapop,pch=20,col="steelblue",cex=size*100)
+plot(datapop,add=T,pch=20)
+
+library(rworldmap)
+data(package="rworldmap")
+data(countriesCoarse,envir = environment(),package = "rworldmap")
+plot(countriesCoarse)
+plot(datapop,add=T,pch=20)
